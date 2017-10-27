@@ -61,8 +61,8 @@ describe('express', function() {
     .type('input[name=amountDue]', 13.01)
     .type('input[name=amountReceived]', 20)
     .click('button.btn')
-    .wait('div.alert.alert-success')
-    .evaluate(() => document.querySelector('div.alert.alert-success').innerText)
+    .wait(2000)
+    .evaluate(() => document.querySelector('h1.totalChange').innerText)
     .end()
     .then(el => expect(el).to.equal('The total change due is $6.99'))
   );
@@ -73,8 +73,8 @@ describe('express', function() {
     .type('input[name=amountDue]', 13.01)
     .type('input[name=amountReceived]', 20)
     .click('button.btn')
-    .wait('div.alert.alert-success')
-    .evaluate(() => Array.from(document.querySelectorAll('div.well > p.lead')).map(e => e.innerText))
+    .wait(2000)
+    .evaluate(() => Array.from(document.querySelectorAll('h3.change')).map(e => e.innerText))
     .then((results) => {
       const expected = {
         twenties: '0',
