@@ -50,7 +50,7 @@ class App extends Component {
     coinDenoms['dimes'] = coinArray[1]
     coinDenoms['nickels'] = coinArray[2]
     coinDenoms['pennies'] = coinArray[3]
-    
+
     this.setState({
       coinDenoms: coinDenoms
     })
@@ -76,65 +76,85 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <header className="change-header">
-          <h1 id="header-h1">Change Calculator</h1>
-        </header>
-        <div className="input-divs clearfix">
-          <div id="order-div">
-            <h1>Customer Total:</h1>
-            <input id="order-input" type="text" placeholder="Customer Order Total" name="amountDue" onChange={this.handleChange} />
-          </div>
-
-          <div id="received-div">
-            <h1>Amount Received For Order:</h1>
-            <input id="received-input" type="text" placeholder="Money Received" name="amountReceived" onChange={this.handleChange} />
+      <div >
+        <div className="container">
+          <div className="jumbotron jumbotron-fluid">
+            <header className="change-header ">
+              <h1 className="text-center" id="header-h1">Change Calculator</h1>
+            </header>
           </div>
         </div>
-        <div id="calculate-div">
-          <button id="calculate-button" className="btn" onClick={this.handleSubmit}>CALCULATE CHANGE</button>
-          <h1 className="totalChange">The total change due is ${this.state.changeDue}</h1>
+        <div className="container">
+          {/* ROW 1: INPUTS */}
+          <div className="row">
+            <div className="col-lg-6 text-center">
+              <h1>Customer Total:</h1>
+              <input id="order-input" type="text" placeholder="Customer Order Total" name="amountDue" onChange={this.handleChange} />
+            </div>
+            <div className="col-lg-6 text-center">
+              <h1>Amount Received For Order:</h1>
+              <input id="received-input" type="text" placeholder="Money Received" name="amountReceived" onChange={this.handleChange} />
+            </div>
+          </div>
+          {/* ROW 2: BUTTON */}
+          <div className="row my-3">
+            <div className="col-lg-12 text-center">
+              <button id="calculate-button" type="button" className="btn btn-primary btn-lg" onClick={this.handleSubmit}>CALCULATE CHANGE</button>
+            </div>
+          </div>
+          {/* ROW 3: CALCULATED CHANGE */}
+          <div className="row my-3">
+            <div className="col-lg-12 text-center">
+              <h1 className="totalChange">The total change due is ${this.state.changeDue}</h1>
+            </div>
+          </div>
+          {/* ROW 4: CHANGE */}
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="card">
+                <div className="card-header">
+                  <h3>Paper Bill Change:</h3>
+                </div>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    <h4>$20: {this.state.billDenoms['twenties']}</h4>
+                  </li>
+                  <li className="list-group-item">
+                    <h4>$10: {this.state.billDenoms['tens']}</h4>
+                  </li>
+                  <li className="list-group-item">
+                    <h4>$5: {this.state.billDenoms['fives']}</h4>
+                  </li>
+                  <li className="list-group-item">
+                    <h4>$1: {this.state.billDenoms['ones']}</h4>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="card">
+                <div className="card-header">
+                  <h3>Coin Change:</h3>
+                </div>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    <h4>Quarters: {this.state.coinDenoms['quarters']}</h4>
+                  </li>
+                  <li className="list-group-item">
+                    <h4>Dimes: {this.state.coinDenoms['dimes']}</h4>
+                  </li>
+                  <li className="list-group-item">
+                    <h4>Nickels: {this.state.coinDenoms['nickels']}</h4>
+                  </li>
+                  <li className="list-group-item">
+                    <h4>Pennies: {this.state.coinDenoms['pennies']}</h4>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="paper-div">
-          <h1>Paper Bill Change:</h1>
-          <div>
-            <h2>$20</h2>
-            <h3 className="change">{this.state.billDenoms['twenties']}</h3>
-          </div>
-          <div>
-            <h2>$10</h2>
-            <h3 className="change">{this.state.billDenoms['tens']}</h3>
-          </div>
-          <div>
-            <h2>$5</h2>
-            <h3 className="change">{this.state.billDenoms['fives']}</h3>
-          </div>
-          <div>
-            <h2>$1</h2>
-            <h3 className="change">{this.state.billDenoms['ones']}</h3>
-          </div>
-        </div>
-
-        <div id="coin-div">
-          <h1>Coin Change:</h1>
-          <div>
-            <h2>Quarters</h2>
-            <h3 className="change">{this.state.coinDenoms['quarters']}</h3>
-          </div>
-          <div>
-            <h2>Dimes</h2>
-            <h3 className="change">{this.state.coinDenoms['dimes']}</h3>
-          </div>
-          <div>
-            <h2>Nickels</h2>
-            <h3 className="change">{this.state.coinDenoms['nickels']}</h3>
-          </div>
-          <div>
-            <h2>Pennies</h2>
-            <h3 className="change">{this.state.coinDenoms['pennies']}</h3>
-          </div>
-        </div>
-      </div>
+      </div >
     );
   }
 }
